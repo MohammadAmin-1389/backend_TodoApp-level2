@@ -1,6 +1,11 @@
-import { body, validationResult } from "express-validator";
+import { body, param, validationResult } from "express-validator";
 
 const validation = [
+  param("id")
+    .optional()
+    .isMongoId()
+    .withMessage("Book id must be a valid MongoDB id"),
+
   body("title")
     .notEmpty()
     .withMessage("Title is required")
